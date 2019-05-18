@@ -1,0 +1,14 @@
+apikey = b4d487de-8987-4851-b61b-d1f6c870718a  | spark64
+
+
+1. get current UV by sensor
+https://api.uvlens.com/api/CurrentConditions/Sensor?longitude=105.85&latitude=21.0333&skinType=0&key=spark64
+
+2. get daily UV Forecat
+https://api.uvlens.com/api/Forecast?longitude=105.85&latitude=21.0333&skinType=0&key=spark64
+
+3. get daily weather
+https://api.uvlens.com/api/Forecast/WeatherForecast?longitude=105.85&latitude=21.0333&skinType=0&key=spark64
+
+4. get current weather
+https://api.uvlens.com/api/CurrentConditions/Weather?longitude=105.85&latitude=21.0333&skinType=0&key=spark64
