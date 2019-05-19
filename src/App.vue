@@ -10,27 +10,54 @@
     </div>
     <div class="fullpage-wp" v-fullpage="opts" ref="fullpage">
       <div class="page-1 page">
-        <p class="part-1" v-animate="{value: 'bounceInLeft'}">
+        <h2 class="part-1" v-animate="{value: 'bounceInLeft'}">
           {{ curentTime | moment("BIỂU ĐỒ UV | DD-MM-YYYY") }}
-        </p>
+        </h2>
+        <div v-if="loadedCurrentUV && loadedUVForcat">
+          <p class="part-1" v-animate="{value: 'bounceInLeft'}">
+            <span>{{ curentTime | moment("hh giờ mm") }} phút </span>
+            <img alt="Vue logo" :src="getWeatherIcon(currentWeatherIcon)">
+            <span> - UV: {{ currentUV }} - </span>
+            <span>{{ currentTemperature }}°C</span>
+          </p>
+        </div>
+        <div v-else>
+          <p class="part-1" v-animate="{value: 'bounceInLeft'}">Đang tải dữ liệu ...</p>
+        </div>
       </div>
       <div class="page-2 page">
         <p class="part-2" v-animate="{value: 'bounceInRight'}">
           {{ curentTime | moment("add", "1 day", "BIỂU ĐỒ UV | DD-MM-YYYY") }}
         </p>
+        <div v-if="loadedCurrentUV && loadedUVForcat">
+          <p class="part-1" v-animate="{value: 'bounceInLeft'}">Đã tải xong dữ liệu</p>
+        </div>
+        <div v-else>
+          <p class="part-1" v-animate="{value: 'bounceInLeft'}">Đang tải dữ liệu ...</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ApiService from './api';
+
+const apiService = new ApiService(0, 0);
+
 export default {
   name: 'app',
   data() {
     const that = this;
     return {
       index: 0,
+      loadedCurrentUV: false,
+      loadedUVForcat: false,
       curentTime: new Date(),
+      currentUV: 0,
+      currentTemperature: 0,
+      currentWeatherIcon: 0,
+      uvForcat: [],
       opts: {
         start: 0,
         dir: 'v',
@@ -50,6 +77,39 @@ export default {
     moveTo(index) {
       this.$refs.fullpage.$fullpage.moveTo(index, true);
     },
+    getWeatherIcon(value) {
+      return `./assets/weather_${value}.png`;
+    },
+    getUVDatas() {
+      // get current uv
+      apiService.getCurrentUV().then((data) => {
+        console.log('currentUV', data);
+        this.currentUV = data.CurrentUV;
+        this.currentTemperature = data.CurrentTemperature;
+        this.currentWeatherIcon = data.WeatherIcon;
+        this.loadedCurrentUV = true;
+      });
+      apiService.getDailyUV().then((data) => {
+        console.log('dailyUV', data);
+        this.uvForcat = data.DailyForecasts;
+        this.loadedUVForcat = true;
+      });
+    },
+    geolocation() {
+      navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoError);
+    },
+    geoSuccess(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      apiService.changeLocation(lat, lng);
+      this.getUVDatas();
+    },
+    geoError(error) {
+      console.log('get geo location error', error);
+    },
+  },
+  beforeMount() {
+    this.geolocation();
   },
 };
 </script>
@@ -76,7 +136,7 @@ body {
   .page {
     display: block;
     text-align: center;
-    font-size: 26px;
+    font-size: 16px;
     color: #eee;
   }
   .page-1 {

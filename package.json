@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && cp ./dist/index.html ./dist/200.html",
+    "build": "vue-cli-service build && cp ./dist/index.html ./dist/200.html && cp -Rf ./src/assets ./dist/",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "animate.css": "^3.7.0",
+    "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "fullpage-vue": "^1.8.3",
     "vue": "^2.6.10",
