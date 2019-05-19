@@ -16,9 +16,15 @@
         <div v-if="loadedCurrentUV && loadedUVForcast">
           <img alt="weather_icon" :src="getWeatherIcon(currentWeatherIcon)">
           <p class="part-1" v-animate="{value: 'bounceInRight'}">
-            <span>{{ curentTime | moment("hh giờ mm") }} phút </span>
+            <span>{{ curentTime | moment("HH giờ mm") }} phút </span>
             <span> - UV: {{ currentUV }} </span>
             <span> - Nhiệt độ: {{ currentTemperature }}°C</span>
+          </p>
+          <p class="part-1 warn">
+            Lưu ý trong khoảng thời gian
+            <span> {{ [uvForcast[0].SafeBefore, "YYYY-MM-DDThh:mm:ss"] | moment("add", "7 hours", "HH giờ mm") }} phút </span>
+            đến
+            <span> {{ [uvForcast[0].SafeAfter, "YYYY-MM-DDThh:mm:ss"] | moment("add", "7 hours", "HH giờ mm") }} phút </span>
           </p>
           <div class="chart-wrapper">
             <la-cartesian
@@ -29,7 +35,7 @@
               <defs>
                 <linearGradient id="color-id" x1="0" y1="1" x2="0" y2="0">
                   <stop offset="0" stop-color="#7DB637"></stop>
-                  <stop offset="0.2" stop-color="#F9B308"></stop>
+                  <stop offset="0.4" stop-color="#F9B308"></stop>
                   <stop offset="0.6" stop-color="#EF8617"></stop>
                   <stop offset="0.8" stop-color="#E04127"></stop>
                   <stop offset="1" stop-color="#A75E99"></stop>
@@ -64,7 +70,12 @@
           {{ curentTime | moment("add", "1 day", "BIỂU ĐỒ UV | DD-MM-YYYY") }}
         </p>
         <div v-if="loadedCurrentUV && loadedUVForcast">
-          <p class="part-1" v-animate="{value: 'bounceInLeft'}">Đã tải xong dữ liệu</p>
+          <p class="part-1 warn">
+            Lưu ý trong khoảng thời gian
+            <span> {{ [uvForcast[1].SafeBefore, "YYYY-MM-DDThh:mm:ss"] | moment("add", "7 hours", "HH giờ mm") }} phút </span>
+            đến
+            <span> {{ [uvForcast[1].SafeAfter, "YYYY-MM-DDThh:mm:ss"] | moment("add", "7 hours", "HH giờ mm") }} phút </span>
+          </p>
           <div class="chart-wrapper">
             <la-cartesian
               :data="getUVForcast(1)"
@@ -255,6 +266,12 @@ body {
     color: #eee;
     img {
       width: 100px;
+    }
+  }
+  .warn {
+    span {
+      color: #A95D95;
+      font-weight: 600;
     }
   }
   .page-1 {
