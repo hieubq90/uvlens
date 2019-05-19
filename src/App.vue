@@ -11,12 +11,12 @@
     <div class="fullpage-wp" v-fullpage="opts" ref="fullpage">
       <div class="page-1 page">
         <p class="part-1" v-animate="{value: 'bounceInLeft'}">
-          {{ curentTime | moment("Biểu đồ giá trị UV ngày DD-MM-YYYY") }}
+          {{ curentTime | moment("BIỂU ĐỒ UV | DD-MM-YYYY") }}
         </p>
       </div>
       <div class="page-2 page">
         <p class="part-2" v-animate="{value: 'bounceInRight'}">
-          {{ curentTime | moment("add", "1 day", "Biểu đồ giá trị UV ngày DD-MM-YYYY") }}
+          {{ curentTime | moment("add", "1 day", "BIỂU ĐỒ UV | DD-MM-YYYY") }}
         </p>
       </div>
     </div>
