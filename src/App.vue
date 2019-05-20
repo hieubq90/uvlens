@@ -157,7 +157,7 @@ export default {
       this.$refs.fullpage.$fullpage.moveTo(index, true);
     },
     getWeatherIcon(value) {
-      return `https://uvlens.hieubq.name.vn/assets/weather_${value}.png`;
+      return `./assets/weather_${value}.png`;
     },
     getUVDatas() {
       // get current uv
@@ -265,7 +265,7 @@ body {
     font-size: 16px;
     color: #eee;
     img {
-      width: 100px;
+      width: 40px;
     }
   }
   .warn {
