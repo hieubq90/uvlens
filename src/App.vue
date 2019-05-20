@@ -275,22 +275,22 @@ body {
     }
   }
   .page-1 {
-    padding-top: 20px;
+    padding-top: 30px;
     background: #40B883;
   }
   .page-2 {
-    padding-top: 20px;
+    padding-top: 30px;
     background: #0798EC;
   }
   .button-group {
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 10px;
+    left: 10px;
     z-index: 9;
   }
   .button-group button {
     display: inline-block;
-    margin: 10px;
+    margin-right: 10px;
     color: #000;
     background: #fff;
     background: rgba(255, 255, 255, .5);
@@ -303,6 +303,32 @@ body {
   .button-group button.active {
     background: rgba(0, 0, 0, .5);
     color: #fff;
+  }
+}
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .page-1 {
+    padding-top: 60px;
+  }
+  .page-2 {
+    padding-top: 60px;
+  }
+}
+
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .page-1 {
+    padding-top: 60px;
+  }
+  .page-2 {
+    padding-top: 60px;
   }
 }
 </style>
