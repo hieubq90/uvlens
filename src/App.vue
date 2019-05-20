@@ -275,38 +275,34 @@ body {
     }
   }
   .page-1 {
-    padding-top: 100px;
+    padding-top: 20px;
     background: #40B883;
   }
   .page-2 {
-    padding-top: 100px;
+    padding-top: 20px;
     background: #0798EC;
   }
-  .page-3 {
-    padding-top: 50px;
-    background: #aabbcc;
-  }
   .button-group {
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        z-index: 9;
-    }
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 9;
+  }
   .button-group button {
-      display: inline-block;
-      margin: 10px;
-      color: #000;
-      background: #fff;
-      background: rgba(255, 255, 255, .5);
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
-      padding: 9px 18px;
-      border: none;
-      outline: none;
+    display: inline-block;
+    margin: 10px;
+    color: #000;
+    background: #fff;
+    background: rgba(255, 255, 255, .5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 9px 18px;
+    border: none;
+    outline: none;
   }
   .button-group button.active {
-      background: rgba(0, 0, 0, .5);
-      color: #fff;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
   }
 }
 </style>
